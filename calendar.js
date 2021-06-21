@@ -4,7 +4,7 @@ function Main() {
     // 現在の年月の取得
     let date = new Date();
     let year = date.getFullYear();
-    let month = date.getMounth() + 1;// date.getMounth()の値が5の場合、6月。数字が本来の月より１つズレている。
+    let month = date.getMonth() + 1;// date.getMounth()の値が5の場合、6月。数字が本来の月より１つズレている。
 
     // カレンダーの表示
     let wrapper = document.getElementById('calendar');
@@ -25,9 +25,9 @@ function add_calendar(wrapper, year, month) {// カレンダーのページを�
 }
 function generate_calendar_header(wrapper, year, month) {// 前月と翌月へと遷移する関数
     // 前月と翌月を取得
-    let prevMonth = new Data(year, (month - 1));
+    let prevMonth = new Date(year, (month - 1));
     prevMonth.setMonth(prevMonth.getMonth() - 1);
-    let nextMonth = new Data(year, (month - 1));
+    let nextMonth = new Date(year, (month - 1));
     nextMonth.setMonth(nextMonth.getMonth() + 1);
 
     // ヘッダー要素
@@ -42,7 +42,7 @@ function generate_calendar_header(wrapper, year, month) {// 前月と翌月へ�
     cHeader.appendChild(cTitle);
 
     //前月ボタンの追加
-    var cPrev = document.createElement('button');
+    let cPrev = document.createElement('button');
     cPrev.className = 'calendar-header prev';
     let cPrevText = document.createTextNode('prev');
     cPrev.appendChild(cPrevText);
@@ -53,7 +53,7 @@ function generate_calendar_header(wrapper, year, month) {// 前月と翌月へ�
     cHeader.appendChild(cPrev);
 
     //翌月ボタンの追加
-    var cNext = document.createElement('button');
+    let cNext = document.createElement('button');
     cNext.className = 'calendar-header next';
     let cNextText = document.createTextNode('next');
     cNext.appendChild(cNextText);
@@ -79,7 +79,7 @@ function generate_month_calendar(year, month) {// カレンダーの月テーブ
             weekday: i
         });
     }
-    let i = calendarData[calendarData.length - 1]['weekday'];// 末日の曜日を取得
+    i = calendarData[calendarData.length - 1]['weekday'];// 末日の曜日を取得
     // カレンダー上の末日よりあとを埋める（日付は記載されていない空きマスを作る）。
     while (i < 6) {
         i ++;
